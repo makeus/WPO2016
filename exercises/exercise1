@@ -1,0 +1,7 @@
+b = Brewery.create name:"BrewDog", year:2007
+b.beers.create name:"Punk IPA", style:"IPA"
+b.beers.create name:"Nanny State", style:"lowalcohol"
+b.beers.where(name: "Nanny State")[0].ratings.create score: 5
+b.beers.where(name: "Nanny State")[0].ratings.create score: 10
+b.beers.where(name: "Punk IPA")[0].ratings.create score: 7
+b.beers.where(name: "Punk IPA")[0].ratings.create score: 2
