@@ -11,4 +11,8 @@ class Beer < ActiveRecord::Base
   			total.to_f / self.ratings.count
   		end
   	end
+
+  	def to_s
+  		"#{brewery.name}: #{name}"
+	end
 end
