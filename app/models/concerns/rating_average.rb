@@ -1,4 +1,5 @@
 module RatingAverage
+	extend ActiveSupport::Concern
 	
   	def average_rating
   		total = self.ratings.reduce 0 do |sum, n|
