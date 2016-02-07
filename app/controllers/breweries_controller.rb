@@ -80,4 +80,4 @@ class BreweriesController < ApplicationController
         admin_accounts[username] == password
       end
     end
-end
+  end
