@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
     validate :password_validation
 
-    has_many :ratings
+    has_many :ratings, dependent: :destroy
     has_many :beers, through: :ratings
     has_many :breweries, through: :membership
     has_many :membership, dependent: :destroy
