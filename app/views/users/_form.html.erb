@@ -11,16 +11,18 @@
 </div>
 <% end %>
 
+<% if @user.new_record? %>
 <div class="field">
-  <%= f.label :username %><br>
+  <%= f.label :username %><br />
   <%= f.text_field :username %>
 </div>
+<% end %>
 <div class="field">
-  <%= f.label :password %><br />
+  <%= f.label :password, @user.new_record? ? 'Password' : 'New password' %><br />
   <%= f.password_field :password %>
 </div>
 <div class="field">
-  <%= f.label :password_confirmation %><br />
+  <%= f.label :password_confirmation, 'Password confirmation' %><br />
   <%= f.password_field :password_confirmation  %>
 </div>
 <div class="actions">
