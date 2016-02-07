@@ -3,6 +3,8 @@ class Beer < ActiveRecord::Base
     belongs_to :brewery
     has_many :ratings, dependent: :destroy
 
+    validates :name, length: { minimum: 1 }
+
     def to_s
         "#{brewery.name}: #{name}"
     end
