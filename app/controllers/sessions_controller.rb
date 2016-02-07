@@ -10,9 +10,10 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id if not user.nil?
       redirect_to user
     end
-
-    def destroy
-      session[:user_id] = nil
-      redirect_to :root
-    end
   end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to :root
+  end
+end

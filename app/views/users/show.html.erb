@@ -4,6 +4,14 @@
   <%= @user.username %>
 </h1>
 
+<% if !@user.beer_clubs.empty? %>
+    <p> member of 
+        <% @user.beer_clubs.each do |beer_club| %>
+            <%= link_to beer_club.name, beer_club %>
+        <% end %>
+    <p>
+<% end %>
+
 <p>
     <% if !@user.ratings.empty? %>
     Has made <%= pluralize @user.ratings.count, "rating" %>, average <%= @user.average_rating %>

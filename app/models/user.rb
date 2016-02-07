@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
     }
 
     has_many :ratings
+    has_many :beers, through: :ratings
+    has_many :breweries, through: :membership
+    has_many :membership, dependent: :destroy
+    has_many :beer_clubs, through: :membership
 end
