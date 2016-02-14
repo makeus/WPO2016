@@ -1,7 +1,14 @@
 require 'rails_helper'
 
+include Helpers
+
 describe "Beers page page" do
+    let!(:user) { FactoryGirl.create :user }
     let!(:brewery) { FactoryGirl.create :brewery, name:"Koff" }
+    
+    before :each do
+        sign_in(username:"Pekka", password:"Foobar1")
+    end
 
     describe "on new beer page" do
         it "should be able to create a new beer with proper name" do
@@ -18,7 +25,7 @@ describe "Beers page page" do
             select('Lager', from:'beer[style]')
             select('Koff', from:'beer[brewery_id]')
             click_button('Create Beer')
-            
+
             expect(page).to have_content "Name is too short"
             expect(Beer.count).to eq(0)
         end
