@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
     has_many :beer_clubs, through: :membership
 
     def password_validation 
+        if !password
+            errors.add(:password, 'password is required')
+            return
+        end
         if password.length < 4
             errors.add(:password, 'password needs to be atleas 4')
         end
