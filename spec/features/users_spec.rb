@@ -27,34 +27,42 @@ describe "User" do
     end
 
     describe "regarding user ratings" do
-
-        let!(:user2) { FactoryGirl.create :user, username: "ToinenJäbä" }
-
         it "without users no ratings should be shown on user page" do
-            sign_in(username:"Pekka", password:"wrong")
+            sign_in(username:"Pekka", password:"Foobar1")
             visit user_path(user)
             expect(page).not_to have_content "Ratings"
         end
 
         it "user shouldnt see ratings made by other users on his page" do
+            user2 =  FactoryGirl.create :user, username: "ToinenJäbä" 
             brewery = FactoryGirl.create :brewery
             beer = FactoryGirl.create :beer, brewery:brewery
             FactoryGirl.create :rating, beer:beer, user:user2
 
-            sign_in(username:"Pekka", password:"wrong")
+            sign_in(username:"Pekka", password:"Foobar1")
             visit user_path(user)
             expect(page).not_to have_content "Ratings"
         end
 
-        it "user should see his own ratings on his page" do
-            brewery = FactoryGirl.create :brewery
-            beer = FactoryGirl.create :beer, brewery:brewery
-            FactoryGirl.create :rating, score:5, beer:beer, user:user
-            FactoryGirl.create :rating, score:10, beer:beer, user:user
+        describe "When user has ratings" do
+            before :each do
+                brewery = FactoryGirl.create :brewery
+                beer = FactoryGirl.create :beer, brewery:brewery
+                FactoryGirl.create :rating, score:5, beer:beer, user:user
+                FactoryGirl.create :rating, score:10, beer:beer, user:user
+                sign_in(username:"Pekka", password:"Foobar1")
+            end
+            it "user should see his own ratings on his page" do
+                visit user_path(user)
+                expect(page).to have_content "Has made 2 ratings"
+            end
 
-            sign_in(username:"Pekka", password:"wrong")
-            visit user_path(user)
-            expect(page).to have_content "Has made 2 ratings"
+            it "user should be able to remove a rating" do
+                expect(user.ratings.count).to eq(2)
+                visit user_path(user)
+                first(:link, 'delete').click
+                expect(user.ratings.count).to eq(1)
+            end
         end
     end
 end
