@@ -24,4 +24,25 @@ describe "Rating" do
         expect(beer1.ratings.count).to eq(1)
         expect(beer1.average_rating).to eq(15.0)
     end
+
+
+    describe "on ratings page" do
+        it "on default should see 0 ratings" do
+            visit ratings_path
+            expect(page).to have_content 'List of ratings'
+            expect(page).to have_content 'Number of ratings 0'
+        end
+
+        it "should list ratings if there are set" do
+            @ratingScores = [12, 45, 1, 5]
+            @ratingScores.each do |score|
+                FactoryGirl.create :rating, score: score, beer:beer1, user:user
+            end
+
+            visit ratings_path
+            expect(page).to have_content 'List of ratings'
+            expect(page).to have_content "Number of ratings #{@ratingScores.count}"
+
+        end
+    end
 end
