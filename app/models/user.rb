@@ -33,4 +33,9 @@ class User < ActiveRecord::Base
             errors.add(:password, 'password needs to have atleast one number')
         end
     end
+
+    def favorite_beer
+        return nil if ratings.empty?
+        ratings.sort_by(&:score).last.beer
+    end
 end
