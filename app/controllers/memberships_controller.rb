@@ -27,10 +27,9 @@ class MembershipsController < ApplicationController
   # POST /memberships.json
   def create
     @membership = Membership.new(membership_params.merge({:user_id => current_user.id}))
-
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
+        format.html { redirect_to @membership.beer_club, flash: { success: @membership.user.username << ', welcome to the club' }}
         format.json { render :show, status: :created, location: @membership }
       else
         @beer_clubs = BeerClub.all
