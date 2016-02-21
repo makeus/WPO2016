@@ -73,7 +73,7 @@ class BeersController < ApplicationController
 
     def set_breweries_and_styles_for_template
       @breweries = Brewery.all
-      @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+      @styles = Style.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
