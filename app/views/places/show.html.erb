@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @place.name %></h1>
+
+<p><%= @place.street %></p>
+<p><%= @place.zip << ", " << @place.city %></p>
+
+<iframe width="600" height="450" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCbHyKKhJKHIZq8Dt6JRFtft7f1khUrGus&q=<%= @place.street << ', ' << @place.city %>" allowfullscreen></iframe>
