@@ -12,7 +12,7 @@
   <% rating_averages.each do |rating| %>
       <tr>
         <td><%= rating[:title] %></td>
-        <td><%= rating[:average] %></td>
+        <td><%= round(rating[:average]) %></td>
       </tr>
   <% end %>
   </tbody>
