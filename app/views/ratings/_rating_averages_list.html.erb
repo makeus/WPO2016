@@ -1,0 +1,19 @@
+<h2><%= title %></h2>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th></th>
+    <th>average</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% rating_averages.each do |rating| %>
+      <tr>
+        <td><%= rating[:title] %></td>
+        <td><%= rating[:average] %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

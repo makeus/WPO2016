@@ -1,7 +1,14 @@
 class RatingsController < ApplicationController
 
   def index
-    @ratings = Rating.all
+    @best_beers = Beer.top(3).map { 
+      |b| {title: b.name, average: b.ratings.average(:score) || 0}
+    }
+    @best_breweries = Brewery.top(3).map { 
+      |b| {title: b.name, average: b.ratings.average(:score) || 0} 
+    }
+    @best_users = User.most_rated 3
+    @recent_ratings = Rating.recent
   end
 
   def new

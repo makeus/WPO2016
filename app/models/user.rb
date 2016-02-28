@@ -34,8 +34,28 @@ class User < ActiveRecord::Base
         end
     end
 
-    def favorite_beer
-        return nil if ratings.empty?
-        ratings.sort_by(&:score).last.beer
+    def favourite_beer
+        return nil if highest_rated.nil?
+        highest_rated.beer
     end
+
+    def favourite_style
+        return nil if highest_rated.nil?
+        highest_rated.beer.style
+    end
+
+    def favourite_brewery
+        return nil if highest_rated.nil?
+        highest_rated.beer.brewery
+    end
+
+    def self.most_rated(n)
+       User.all.sort_by{ |u| -(u.ratings.count||0) }.first(n)
+    end
+
+    private
+        def highest_rated
+            return nil if ratings.empty?
+            ratings.sort_by(&:score).last
+        end
 end
