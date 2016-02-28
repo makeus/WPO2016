@@ -12,4 +12,7 @@ module ApplicationHelper
     number_with_precision number, precision: 1
   end
 
+  def is_admin
+    !current_user.nil? && current_user.admin 
+  end
 end

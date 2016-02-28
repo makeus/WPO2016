@@ -2,6 +2,16 @@
   <%= @user.username %>
 </h1>
 
+<% if is_admin %>
+  <p>
+  <% if @user.halted %>
+    <%= link_to "Unfreeze" , toggle_freeze_user_path(@user.id), method: :post, class: 'btn btn-info' %>
+  <% else %>
+    <%= link_to "Freeze account" , toggle_freeze_user_path(@user.id), method: :post, class: 'btn btn-danger' %>
+  <% end %>
+  </p>
+<% end %>
+
 <% if !@user.beer_clubs.empty? %>
 <p> member of 
     <% @user.beer_clubs.each do |beer_club| %>
