@@ -29,8 +29,8 @@ describe "Rating" do
     describe "on ratings page" do
         it "on default should see 0 ratings" do
             visit ratings_path
-            expect(page).to have_content 'List of ratings'
-            expect(page).to have_content 'Number of ratings 0'
+            expect(page).to have_content 'Recent ratings'
+            expect(page).to have_selector('main li', count: 0)
         end
 
         it "should list ratings if there are set" do
@@ -40,9 +40,10 @@ describe "Rating" do
             end
 
             visit ratings_path
-            expect(page).to have_content 'List of ratings'
-            expect(page).to have_content "Number of ratings #{@ratingScores.count}"
-
+            expect(page).to have_content 'Recent ratings'
+            expect(page).to have_selector('main li', count: @ratingScores.count)
         end
     end
+
+    
 end

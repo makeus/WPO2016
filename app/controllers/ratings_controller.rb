@@ -7,6 +7,9 @@ class RatingsController < ApplicationController
     @best_breweries = Brewery.top(3).map { 
       |b| {title: b.name, average: b.ratings.average(:score) || 0} 
     }
+    @best_styles = Style.top(3).map { 
+      |s| {title: s.name, average: s.average_rating || 0} 
+    }
     @best_users = User.most_rated 3
     @recent_ratings = Rating.recent
   end
