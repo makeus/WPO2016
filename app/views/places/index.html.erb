@@ -2,9 +2,11 @@
 
 <p id="notice"><%= notice %></p>
 
-<%= form_tag places_path do %>
-  city <%= text_field_tag :city, params[:city] %>
-  <%= submit_tag "Search" %>
+<%= form_tag places_path, class: "form-inline" do %>
+  <span class="form-group">
+    <label>city <%= text_field_tag :city, params[:city], class: "form-control" %></label>
+  </span>
+  <%= submit_tag "Search", class: "btn btd-default" %>
 <% end %>
 
 <% if @places %>

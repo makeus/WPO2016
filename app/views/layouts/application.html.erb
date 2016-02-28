@@ -13,7 +13,7 @@
       <%= render 'layouts/navigation' %>
     </header>
 
-    <main role="main" class=".container">
+    <main role="main" class="container-fluid">
       <%= render 'layouts/messages' %>
 
       <div class="row">
@@ -21,7 +21,7 @@
           <%= yield %>
         </div>
         <div class="col-md-4">
-          <img src="/images/pint.jpg" width="200">
+          <%= image_tag "pint.jpg", class: "img-responsive img-thumbnail" %>
         </div>
       </div>
 

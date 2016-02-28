@@ -10,11 +10,11 @@
 
 <h2>Members</h2>
 <ul>
-	<% @beer_club.members.each do |member| %>
-	<li>
-		<%= link_to member.username, member %>
-	</li>
-	<% end %>
+  <% @beer_club.members.each do |member| %>
+  <li>
+     <%= link_to member.username, member %>
+  </li>
+   <% end %>
 </ul>
 
 <% if current_user %>
