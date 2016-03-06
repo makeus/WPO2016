@@ -42,10 +42,29 @@ describe "beerlist page" do
     element1text = find('table').find('tr:nth-child(2)').first('td').text
     element2text = find('table').find('tr:nth-child(3)').first('td').text
 
-    puts element1text
-    puts element2text
-
     expect(element1text < element2text).to eq(true)
   end
+
+  it "should on style sort by style alphabetically", :js => true do
+    visit beerlist_path
+
+    click_link 'Style'
+
+    element1text = find('table').find('tr:nth-child(2)').find('td:nth-child(2)').text
+    element2text = find('table').find('tr:nth-child(3)').find('td:nth-child(2)').text
+
+    expect(element1text < element2text).to eq(true)
+  end 
+
+  it "should on brewery sort by brewery alphabetically", :js => true do
+    visit beerlist_path
+
+    click_link 'Brewery'
+
+    element1text = find('table').find('tr:nth-child(2)').find('td:nth-child(3)').text
+    element2text = find('table').find('tr:nth-child(3)').find('td:nth-child(3)').text
+
+    expect(element1text < element2text).to eq(true)
+  end 
 
 end
