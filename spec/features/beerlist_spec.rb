@@ -35,4 +35,17 @@ describe "beerlist page" do
     find('table').find('tr:nth-child(2)')
     expect(page).to have_content "Nikolai"
   end
+
+  it "should on default be on alphabetical order", :js => true do
+
+    visit beerlist_path
+    element1text = find('table').find('tr:nth-child(2)').first('td').text
+    element2text = find('table').find('tr:nth-child(3)').first('td').text
+
+    puts element1text
+    puts element2text
+
+    expect(element1text < element2text).to eq(true)
+  end
+
 end
