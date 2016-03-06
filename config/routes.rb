@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :beer_clubs
   resources :users
   resources :beers
+  get 'beerlist', to:'beers#list'
+  get 'ngbeerlist', to:'beers#nglist'
   resources :breweries
   root 'breweries#index'
   resources :ratings, only: [:index, :new, :create, :destroy]
